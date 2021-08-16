@@ -36,3 +36,27 @@
     transform: rotate(360deg);
   }
 }
+.vertical-menu {
+  height: 40vmin;
+  width: 200px;
+  margin: auto;
+  width: 90%;
+  border: 3px solid green;
+}
+
+.vertical-menu a {
+  background-color: #eee;
+  color: black;
+  display: block;
+  padding: 12px;
+  text-decoration: none;
+}
+
+.vertical-menu a:hover {
+  background-color: #ccc;
+}
+
+.vertical-menu a.active {
+  background-color: #04aa6d;
+  color: white;
+}
