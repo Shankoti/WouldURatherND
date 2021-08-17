@@ -6,7 +6,6 @@ import { createStore } from "redux";
 import { Provider } from "react-redux";
 import middleware from "./middleware";
 import reducers from "./reducers";
-
 const store = createStore(reducers, middleware);
 
 ReactDOM.render(
