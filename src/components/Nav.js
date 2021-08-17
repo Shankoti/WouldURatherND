@@ -1,21 +1,40 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { Component } from "react";
+import { connect } from "react-redux";
+import "./Nav.css";
+import { LogOut } from "../actions/logOut";
 
-export default function Nav() {
-  return (
-    <nav className="nav">
-      <ul>
-        <li>
-          <NavLink to="/" exact activeClassName="active">
-            Home
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/new" activeClassName="active">
-            New Tweet
-          </NavLink>
-        </li>
-      </ul>
-    </nav>
-  );
+class Nav extends Component {
+  state = {};
+  render() {
+    return (
+      <nav>
+        <ul>
+          <li>
+            <NavLink to="/Dashboard">Dashboard</NavLink>
+          </li>
+          <li>
+            <NavLink to="/new">Ask a new question</NavLink>
+          </li>
+          <li>
+            <NavLink to="/Leaderboard">Leaderboard</NavLink>
+          </li>
+          <li
+            style={{ float: "right" }}
+            onClick={() => this.props.dispatch(LogOut(null))}
+          >
+            <NavLink to="/">User is logged in, log out ?</NavLink>
+          </li>
+        </ul>
+      </nav>
+    );
+  }
 }
+function mapStateToProps({ authuser }) {
+  return {
+    authuser,
+  };
+}
+
+export default connect(mapStateToProps)(Nav);

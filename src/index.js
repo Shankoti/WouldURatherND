@@ -6,12 +6,15 @@ import { createStore } from "redux";
 import { Provider } from "react-redux";
 import middleware from "./middleware";
 import reducers from "./reducers";
+import { BrowserRouter } from "react-router-dom";
 const store = createStore(reducers, middleware);
 
 ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
+  <BrowserRouter>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </BrowserRouter>,
   document.getElementById("root")
 );
 
