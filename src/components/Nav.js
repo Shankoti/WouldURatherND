@@ -15,7 +15,7 @@ class Nav extends Component {
             <NavLink to="/Dashboard">Dashboard</NavLink>
           </li>
           <li>
-            <NavLink to="/new">Ask a new question</NavLink>
+            <NavLink to="/New">Ask a new question</NavLink>
           </li>
           <li>
             <NavLink to="/Leaderboard">Leaderboard</NavLink>
@@ -24,7 +24,9 @@ class Nav extends Component {
             style={{ float: "right" }}
             onClick={() => this.props.dispatch(LogOut(null))}
           >
-            <NavLink to="/">User is logged in, log out ?</NavLink>
+            <NavLink to="/">
+              {this.props.authuser.name} is logged in, log out ?
+            </NavLink>
           </li>
         </ul>
       </nav>

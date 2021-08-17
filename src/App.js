@@ -6,9 +6,11 @@ import { SetAuthUser } from "./actions/authuser";
 import { Link } from "react-router-dom";
 import { Route } from "react-router";
 import Dashboard from "./components/Dashboard";
+import { List, Header } from "semantic-ui-react";
+
+//git push -u origin main
 
 //making this function a react component so i can use componentDidMount()
-//git push -u origin main
 
 class App extends Component {
   componentDidMount() {
@@ -24,17 +26,19 @@ class App extends Component {
           path="/"
           render={() => (
             <div className="vertical-menu">
-              <ul>
-                Select
+              <List divided relaxed>
+                <Header as="h2" icon textAlign="center">
+                  <Header.Content>Select</Header.Content>
+                </Header>
                 {this.props.usrs.map((user) => (
-                  <li
+                  <List.Item
                     onClick={() => this.props.dispatch(SetAuthUser(user))}
                     key={user.id}
                   >
                     <Link to="/Dashboard">{user.name}</Link>
-                  </li>
+                  </List.Item>
                 ))}
-              </ul>
+              </List>
             </div>
           )}
         />

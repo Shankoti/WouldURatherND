@@ -42,6 +42,7 @@
   margin: auto;
   width: 90%;
   border: 3px solid green;
+  padding: 40px;
 }
 
 .vertical-menu a {
