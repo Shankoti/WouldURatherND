@@ -25,7 +25,7 @@ class Nav extends Component {
             onClick={() => this.props.dispatch(LogOut(null))}
           >
             <NavLink to="/">
-              {this.props.authuser.name} is logged in, log out ?
+              {this.props.authedUser.name} is logged in, log out ?
             </NavLink>
           </li>
         </ul>
@@ -33,9 +33,9 @@ class Nav extends Component {
     );
   }
 }
-function mapStateToProps({ authuser }) {
+function mapStateToProps({ authedUser }) {
   return {
-    authuser,
+    authedUser,
   };
 }
 

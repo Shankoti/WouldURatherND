@@ -2,12 +2,13 @@ import "./App.css";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { handleInitialData } from "./actions/shared";
-import { SetAuthUser } from "./actions/authuser";
+import { SetAuthedUser } from "./actions/authedUser";
 import { Link } from "react-router-dom";
 import { Route } from "react-router";
 import Dashboard from "./components/Dashboard";
 import AskNew from "./components/AskNew";
 import { List, Header } from "semantic-ui-react";
+import LeadrBoaed from "./components/LeadrBoard";
 
 //git push -u origin main
 
@@ -33,7 +34,7 @@ class App extends Component {
                 </Header>
                 {this.props.usrs.map((user) => (
                   <List.Item
-                    onClick={() => this.props.dispatch(SetAuthUser(user))}
+                    onClick={() => this.props.dispatch(SetAuthedUser(user))}
                     key={user.id}
                   >
                     <Link to="/Dashboard">{user.name}</Link>
@@ -45,6 +46,7 @@ class App extends Component {
         />
         <Route exact path="/Dashboard" component={Dashboard} />
         <Route exact path="/new" component={AskNew} />
+        <Route exact path="/Leaderboard" component={LeadrBoaed} />
       </div>
     );
   }

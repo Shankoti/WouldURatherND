@@ -1,11 +1,11 @@
-import { AUTH_USER } from "../actions/authuser";
+import { AUTHED_USER } from "../actions/authedUser";
 import { LOG_OUT } from "../actions/logOut";
-export default function authuser(state = {}, action) {
+export default function authedUser(state = {}, action) {
   switch (action.type) {
-    case AUTH_USER:
+    case AUTHED_USER:
       return {
         ...state,
-        ...action.authuser,
+        ...action.authedUser,
       };
     case LOG_OUT:
       return {};
