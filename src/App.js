@@ -6,6 +6,7 @@ import { SetAuthUser } from "./actions/authuser";
 import { Link } from "react-router-dom";
 import { Route } from "react-router";
 import Dashboard from "./components/Dashboard";
+import AskNew from "./components/AskNew";
 import { List, Header } from "semantic-ui-react";
 
 //git push -u origin main
@@ -43,6 +44,7 @@ class App extends Component {
           )}
         />
         <Route exact path="/Dashboard" component={Dashboard} />
+        <Route exact path="/new" component={AskNew} />
       </div>
     );
   }
