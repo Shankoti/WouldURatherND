@@ -94,8 +94,16 @@ class Dashboard extends Component {
                         <p
                           style={{ color: "green", fontSize: 16 }}
                         >{`Would you rather....`}</p>
-
+                        <h1>
+                          {this.props.urs[this.props.athusr.id].answers[
+                            q.id
+                          ] === "optionTwo"
+                            ? q.optionTwo.text
+                            : q.optionOne.text}
+                        </h1>
                         <Button
+                          disabled
+                          color="green"
                           onClick={() =>
                             this.props.dispatch(
                               AddAnswer(this.props.athusr.id, q.id, "optionOne")

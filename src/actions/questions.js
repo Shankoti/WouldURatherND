@@ -1,6 +1,7 @@
 import { saveQuestion } from "../util/api";
 import { AddQtoUser } from "./users";
 
+export const ADD_ANSWER_Q = "ADD_ANSWER_Q";
 export const RECEIVE_QUESTIONS = "RECEIVE_QUESTIONS";
 export const ADD_QUESTION = "ADD_QUESTION";
 export function receiveQuestions(questions) {
@@ -15,6 +16,9 @@ export function addQustion(question) {
     question,
   };
 }
+export function AddAnswerQ(authUser, qid, answer) {
+  return { type: ADD_ANSWER_Q, authUser, qid, answer };
+}
 
 export function handleaddQustion(optionOneText, optionTwoText, author) {
   return async (dispatch) => {
@@ -28,4 +32,6 @@ export function handleaddQustion(optionOneText, optionTwoText, author) {
     dispatch(AddQtoUser(question_1));
   };
 }
-export function handleQanswer() {}
+export function handleQanswer(authUser, qid, answer) {
+  return {};
+}

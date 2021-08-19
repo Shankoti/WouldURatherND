@@ -1,3 +1,5 @@
+import { AddAnswerQ } from "./questions";
+
 export const RECEIVE_USERS = "RECEIVE_USERS";
 export const ADD_QUESTION_TO_USER = "ADD_QUESTION_TO_USER";
 export const ADD_ANSWER_TO_USER = "ADD_ANSWER_TO_USER";
@@ -23,5 +25,11 @@ export function AddAnswer(authedUser, qid, answer) {
     authedUser,
     qid,
     answer,
+  };
+}
+export function handleQanswer(authUser, qid, answer) {
+  return (dispatch) => {
+    dispatch(AddAnswer(authUser, qid, answer));
+    dispatch(AddAnswerQ(authUser, qid, answer));
   };
 }
