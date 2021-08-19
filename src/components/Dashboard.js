@@ -5,6 +5,8 @@ import { List, Container, Button, Card, Image } from "semantic-ui-react";
 import { Tab } from "semantic-ui-react";
 import { AddAnswer } from "../actions/users";
 import { Redirect } from "react-router";
+import { Route } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 class Dashboard extends Component {
   state = {};
@@ -38,7 +40,6 @@ class Dashboard extends Component {
                         <p
                           style={{ color: "green", fontSize: 16 }}
                         >{`Would you rather....`}</p>
-
                         <Button
                           onClick={() =>
                             this.props.dispatch(
@@ -58,6 +59,9 @@ class Dashboard extends Component {
                         >
                           {q.optionTwo.text}
                         </Button>
+                        <Link to={`/question/${q.id}`}>
+                          <Button primary></Button>
+                        </Link>
                       </Card>
                     </div>
                   </Container>
@@ -123,9 +127,7 @@ class Dashboard extends Component {
       return (
         <div>
           <Nav />
-          <div>
-            <Tab panes={panes} />
-          </div>
+          <Tab panes={panes} />
         </div>
       );
     } else {

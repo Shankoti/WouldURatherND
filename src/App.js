@@ -9,6 +9,7 @@ import Dashboard from "./components/Dashboard";
 import AskNew from "./components/AskNew";
 import { List, Header, Segment } from "semantic-ui-react";
 import LeadrBoaed from "./components/LeadrBoard";
+import Question from "./components/Question";
 
 //git push -u origin main
 
@@ -51,6 +52,7 @@ class App extends Component {
 
           <Route exact path="/new" component={AskNew} />
           <Route exact path="/Leaderboard" component={LeadrBoaed} />
+          <Route path="/question/:id" component={Question} />
           <Route
             path="*"
             render={() => (
