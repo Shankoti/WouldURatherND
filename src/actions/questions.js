@@ -1,6 +1,5 @@
 import { saveQuestion } from "../util/api";
 import { AddQtoUser } from "./users";
-import { saveQuestionAnswer } from "../util/api";
 
 export const RECEIVE_QUESTIONS = "RECEIVE_QUESTIONS";
 export const ADD_QUESTION = "ADD_QUESTION";
