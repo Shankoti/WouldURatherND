@@ -35,10 +35,10 @@ class LeadrBoaed extends Component {
                         <h1>{`${user.name}`}</h1>
                       </Grid.Column>
                       <Grid.Column>
-                        <h1>{`Answerd qustions  ${user.questionsAnswerd}`}</h1>
+                        <h1>{`Answerd questions  ${user.questionsAnswerd}`}</h1>
                       </Grid.Column>
                       <Grid.Column>
-                        <h1>{`Asked qustions  ${user.questionsAsked}`}</h1>
+                        <h1>{`Asked questions  ${user.questionsAsked}`}</h1>
                       </Grid.Column>
                       <Grid.Column>
                         <h1>{`Points  ${user.totalQuestions}`}</h1>

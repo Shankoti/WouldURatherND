@@ -1,11 +1,16 @@
 import React, { Component } from "react";
 import Nav from "./Nav";
 import { connect } from "react-redux";
-import { List, Container, Button, Card, Image } from "semantic-ui-react";
+import {
+  List,
+  Container,
+  Button,
+  Card,
+  Image,
+  Header,
+} from "semantic-ui-react";
 import { Tab } from "semantic-ui-react";
-import { AddAnswer } from "../actions/users";
 import { Redirect } from "react-router";
-import { Route } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 class Dashboard extends Component {
@@ -40,27 +45,10 @@ class Dashboard extends Component {
                         <p
                           style={{ color: "green", fontSize: 16 }}
                         >{`Would you rather....`}</p>
-                        <Button
-                          onClick={() =>
-                            this.props.dispatch(
-                              AddAnswer(this.props.athusr.id, q.id, "optionOne")
-                            )
-                          }
-                        >
-                          {q.optionOne.text}
-                        </Button>
-                        <Button
-                          onClick={() =>
-                            this.props.dispatch(
-                              AddAnswer(this.props.athusr.id, q.id, "optionTwo")
-                            )
-                          }
-                          primary
-                        >
-                          {q.optionTwo.text}
-                        </Button>
+                        <Header>{q.optionOne.text}</Header>
+                        <Header>{q.optionTwo.text}</Header>
                         <Link to={`/question/${q.id}`}>
-                          <Button primary></Button>
+                          <Button primary>Answer question</Button>
                         </Link>
                       </Card>
                     </div>
@@ -94,34 +82,24 @@ class Dashboard extends Component {
                         <p
                           style={{ color: "green", fontSize: 16 }}
                         >{`Would you rather....`}</p>
-                        <h1>
-                          {this.props.urs[this.props.athusr.id].answers[
-                            q.id
-                          ] === "optionTwo"
-                            ? q.optionTwo.text
-                            : q.optionOne.text}
-                        </h1>
-                        <Button
-                          disabled
-                          color="green"
-                          onClick={() =>
-                            this.props.dispatch(
-                              AddAnswer(this.props.athusr.id, q.id, "optionOne")
-                            )
-                          }
-                        >
-                          {q.optionOne.text}
-                        </Button>
-                        <Button
-                          onClick={() =>
-                            this.props.dispatch(
-                              AddAnswer(this.props.athusr.id, q.id, "optionTwo")
-                            )
-                          }
-                          primary
-                        >
-                          {q.optionTwo.text}
-                        </Button>
+                        <p>{q.optionOne.text}</p>
+                        <p>or {q.optionTwo.text}</p>
+
+                        {this.props.urs[this.props.athusr.id].answers[q.id] ===
+                        "optionTwo" ? (
+                          <Header style={{ padding: 20 }}>
+                            Your answer is
+                            <Header color="green">{`${q.optionTwo.text}`}</Header>
+                          </Header>
+                        ) : (
+                          <Header style={{ padding: 20 }}>
+                            Your answer is
+                            <Header color="green">{`${q.optionOne.text}`}</Header>
+                          </Header>
+                        )}
+                        <Link to={`/question/${q.id}`}>
+                          <Button primary>Statistics </Button>
+                        </Link>
                       </Card>
                     </div>
                   </Container>
