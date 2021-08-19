@@ -7,6 +7,7 @@ class LeadrBoaed extends Component {
   render() {
     const RankedUsers = this.props.usrs
       .map((user) => ({
+        name: user.name,
         id: user.id,
         avatarURL: user.avatarURL,
         questionsAnswerd: Object.values(user.answers).length,
@@ -30,6 +31,9 @@ class LeadrBoaed extends Component {
                   </Grid.Column>
                   <Grid.Column textAlign="left" verticalAlign="middle">
                     <Grid.Row columns={1}>
+                      <Grid.Column>
+                        <h1>{`${user.name}`}</h1>
+                      </Grid.Column>
                       <Grid.Column>
                         <h1>{`Answerd qustions  ${user.questionsAnswerd}`}</h1>
                       </Grid.Column>

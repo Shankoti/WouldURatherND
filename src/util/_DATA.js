@@ -1,17 +1,4 @@
 let users = {
-  Moamen: {
-    id: "Moamen",
-    name: "MoamenMounir",
-    avatarURL:
-      "https://pbs.twimg.com/profile_images/847601753973415940/cVPQkoDI_400x400.jpg",
-    answers: {
-      "8xf0y6ziyjabvozdd253nd": "optionOne",
-      "6ni6ok3ym7mf1p33lnez": "optionTwo",
-      am8ehyc8byjqgar0jgpub9: "optionTwo",
-      loxhs1bqm25b708cmbf3g: "optionTwo",
-    },
-    questions: ["8xf0y6ziyjabvozdd253nd", "am8ehyc8byjqgar0jgpub9"],
-  },
   sarahedo: {
     id: "sarahedo",
     name: "Sarah Edo",

@@ -1,4 +1,5 @@
 import { RECEIVE_USERS } from "../actions/users";
+import { ADD_ANSWER_TO_USER } from "../actions/users";
 import { ADD_QUESTION_TO_USER } from "../actions/users";
 
 export default function users(state = {}, action) {
@@ -16,6 +17,18 @@ export default function users(state = {}, action) {
         [author]: {
           ...state[author],
           questions: state[author].questions.concat(id),
+        },
+      };
+    case ADD_ANSWER_TO_USER:
+      const { authedUser, qid, answer } = action;
+      return {
+        ...state,
+        [authedUser]: {
+          ...state[authedUser],
+          answers: {
+            ...state[authedUser].answers,
+            [qid]: answer,
+          },
         },
       };
     default:

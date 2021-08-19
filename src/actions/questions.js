@@ -19,6 +19,7 @@ export function addQustion(question) {
 
 export function handleaddQustion(optionOneText, optionTwoText, author) {
   return async (dispatch) => {
+    //use Api function to format the Questuion
     const question_1 = await saveQuestion({
       optionOneText,
       optionTwoText,
