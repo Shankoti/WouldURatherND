@@ -7,6 +7,7 @@ import {
   Segment,
   Button,
   Progress,
+  Header,
 } from "semantic-ui-react";
 import Nav from "./Nav";
 import { handleQanswer } from "../actions/users";
@@ -43,22 +44,7 @@ class Question extends Component {
                       </Grid.Column>
 
                       <Grid.Column>
-                        {!this.state.vis || answerd.includes(theQuestion.id) ? (
-                          <Button
-                            onClick={() => {
-                              this.setState({ vis: true });
-
-                              this.props.dispatch(
-                                handleQanswer(
-                                  this.props.athusr.id,
-                                  theQuestion.id,
-                                  "optionOne"
-                                )
-                              );
-                            }}
-                            primary
-                          >{`${theQuestion.optionOne.text} `}</Button>
-                        ) : (
+                        {this.state.vis || answerd.includes(theQuestion.id) ? (
                           <h1>
                             {`${theQuestion.optionOne.votes.length} of ${
                               theQuestion.optionOne.votes.length +
@@ -76,23 +62,23 @@ class Question extends Component {
                               progress
                             />
                           </h1>
-                        )}
-                        {!this.state.vis ? (
+                        ) : (
                           <Button
                             onClick={() => {
                               this.setState({ vis: true });
+
                               this.props.dispatch(
                                 handleQanswer(
                                   this.props.athusr.id,
                                   theQuestion.id,
-                                  "optionTwo"
+                                  "optionOne"
                                 )
                               );
                             }}
-                          >
-                            {`${theQuestion.optionTwo.text} `}
-                          </Button>
-                        ) : (
+                            primary
+                          >{`${theQuestion.optionOne.text} `}</Button>
+                        )}
+                        {this.state.vis || answerd.includes(theQuestion.id) ? (
                           <h1>
                             {`${theQuestion.optionTwo.votes.length} of ${
                               theQuestion.optionOne.votes.length +
@@ -109,12 +95,36 @@ class Question extends Component {
                               }
                               progress
                             />
+                            {this.props.urs[this.props.athusr.id].answers[
+                              theQuestion.id
+                            ] === "optionTwo" ? (
+                              <Header style={{ padding: 20 }}>
+                                Your answer is
+                                <Header color="green">{`${theQuestion.optionTwo.text}`}</Header>
+                              </Header>
+                            ) : (
+                              <Header style={{ padding: 20 }}>
+                                Your answer is
+                                <Header color="green">{`${theQuestion.optionOne.text}`}</Header>
+                              </Header>
+                            )}
                           </h1>
+                        ) : (
+                          <Button
+                            onClick={() => {
+                              this.setState({ vis: true });
+                              this.props.dispatch(
+                                handleQanswer(
+                                  this.props.athusr.id,
+                                  theQuestion.id,
+                                  "optionTwo"
+                                )
+                              );
+                            }}
+                          >
+                            {`${theQuestion.optionTwo.text} `}
+                          </Button>
                         )}
-
-                        <Button
-                          onClick={() => console.log(this.state.vis)}
-                        ></Button>
                       </Grid.Column>
                     </Grid.Row>
                   </Grid.Column>
