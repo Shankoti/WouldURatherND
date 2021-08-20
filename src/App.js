@@ -52,11 +52,6 @@ class App extends Component {
                     </List.Item>
                   ))}
                 </List>
-                <button
-                  onClick={() =>
-                    console.log(this.props.location.state.from.pathname)
-                  }
-                ></button>
               </div>
             )}
           />
