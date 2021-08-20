@@ -135,7 +135,11 @@ class Question extends Component {
         </div>
       );
     } else {
-      return <Redirect to="/" />;
+      return (
+        <Redirect
+          to={{ pathname: "/", state: { from: this.props.location } }}
+        />
+      );
     }
   }
 }
