@@ -11,22 +11,22 @@ import {
 } from "semantic-ui-react";
 import Nav from "./Nav";
 import { handleQanswer } from "../actions/users";
+import { Redirect } from "react-router";
+import { withRouter } from "react-router-dom";
+
 class Question extends Component {
   state = { vis: false };
 
   render() {
-    const { Id, QUS, urs } = this.props;
-    console.log(QUS[Id]);
-    console.log(urs[QUS[Id].author].avatarURL);
-    const theQuestion = QUS[Id];
-    const author = urs[QUS[Id].author];
-    const answerd = Object.keys(this.props.urs[this.props.athusr.id].answers);
-    console.log("qqqqqqqq", answerd.includes(theQuestion.id));
+    if (this.props.athusr.id) {
+      console.log(this.props);
+      const { Id, QUS, urs } = this.props;
+      console.log(QUS[Id]);
+      console.log(urs[QUS[Id].author].avatarURL);
+      const theQuestion = QUS[Id];
+      const author = urs[QUS[Id].author];
+      const answerd = Object.keys(this.props.urs[this.props.athusr.id].answers);
 
-    if (
-      //this.state.vis === false
-      true
-    ) {
       return (
         <div>
           <Nav />
@@ -135,11 +135,7 @@ class Question extends Component {
         </div>
       );
     } else {
-      return (
-        <div>
-          <Nav />
-        </div>
-      );
+      return <Redirect to="/" />;
     }
   }
 }
@@ -155,4 +151,4 @@ function mapStateToProps({ questions, users, authedUser }, props) {
   };
 }
 
-export default connect(mapStateToProps)(Question);
+export default connect(mapStateToProps)(withRouter(Question));

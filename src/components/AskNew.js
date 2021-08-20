@@ -4,11 +4,13 @@ import { Button, Form } from "semantic-ui-react";
 import { connect } from "react-redux";
 import { handleaddQustion } from "../actions/questions";
 import { Redirect } from "react-router";
+import { withRouter } from "react-router-dom";
 
 class AskNew extends Component {
   state = {
     OpOne: "",
     OpTwo: "",
+    submitDone: false,
   };
   handleChangeOpOne = (e) => {
     const OpOne = e.target.value;
@@ -43,45 +45,54 @@ class AskNew extends Component {
       OpOne: "",
       OpTwo: "",
     }));
+    this.setState({ submitDone: true });
   };
   render() {
     if (this.props.authedUser.id) {
       const { OpOne, OpTwo } = this.state;
-      return (
-        <div>
-          <Nav />
-          <div style={{ padding: 100 }}>
-            <Form style={{ padding: 100 }} onSubmit={this.handleSubmit}>
-              <Form.Field style={{ paddingLeft: 200, paddingRight: 200 }}>
-                <label>Would you rather..</label>
-                <input
-                  onChange={this.handleChangeOpOne}
-                  value={OpOne}
-                  placeholder="Option one"
-                />
-              </Form.Field>
-              <Form.Field style={{ paddingLeft: 200, paddingRight: 200 }}>
-                <label>or..</label>
-                <input
-                  onChange={this.handleChangeOpTwo}
-                  value={OpTwo}
-                  placeholder="Option two"
-                />
-              </Form.Field>
+      if (this.state.submitDone) {
+        return <Redirect to="/Dashboard" />;
+      } else {
+        return (
+          <div>
+            <Nav />
+            <div style={{ padding: 100 }}>
+              <Form style={{ padding: 100 }} onSubmit={this.handleSubmit}>
+                <Form.Field style={{ paddingLeft: 200, paddingRight: 200 }}>
+                  <label>Would you rather..</label>
+                  <input
+                    onChange={this.handleChangeOpOne}
+                    value={OpOne}
+                    placeholder="Option one"
+                  />
+                </Form.Field>
+                <Form.Field style={{ paddingLeft: 200, paddingRight: 200 }}>
+                  <label>or..</label>
+                  <input
+                    onChange={this.handleChangeOpTwo}
+                    value={OpTwo}
+                    placeholder="Option two"
+                  />
+                </Form.Field>
 
-              <Button
-                disabled={OpTwo === "" || OpOne === ""}
-                style={{ marginLeft: 200 }}
-                type="submit"
-              >
-                Submit
-              </Button>
-            </Form>
+                <Button
+                  disabled={OpTwo === "" || OpOne === ""}
+                  style={{ marginLeft: 200 }}
+                  type="submit"
+                >
+                  Submit
+                </Button>
+              </Form>
+            </div>
           </div>
-        </div>
-      );
+        );
+      }
     } else {
-      return <Redirect to="/" />;
+      return (
+        <Redirect
+          to={{ pathname: "/", state: { from: this.props.location } }}
+        />
+      );
     }
   }
 }
@@ -91,4 +102,4 @@ function mapStateToProps({ authedUser }) {
   };
 }
 
-export default connect(mapStateToProps)(AskNew);
+export default connect(mapStateToProps)(withRouter(AskNew));

@@ -3,13 +3,14 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { handleInitialData } from "./actions/shared";
 import { SetAuthedUser } from "./actions/authedUser";
-import { Link, Switch } from "react-router-dom";
+import { Link, Switch, withRouter } from "react-router-dom";
 import { Route } from "react-router";
 import Dashboard from "./components/Dashboard";
 import AskNew from "./components/AskNew";
 import { List, Header, Segment } from "semantic-ui-react";
 import LeadrBoaed from "./components/LeadrBoard";
 import Question from "./components/Question";
+import Nav from "./components/Nav";
 
 //git push -u origin main
 
@@ -39,10 +40,23 @@ class App extends Component {
                       onClick={() => this.props.dispatch(SetAuthedUser(user))}
                       key={user.id}
                     >
-                      <Link to="/Dashboard">{user.name}</Link>
+                      <Link
+                        to={
+                          this.props.location.state
+                            ? this.props.location.state.from.pathname
+                            : "/dashboard"
+                        }
+                      >
+                        {user.name}
+                      </Link>
                     </List.Item>
                   ))}
                 </List>
+                <button
+                  onClick={() =>
+                    console.log(this.props.location.state.from.pathname)
+                  }
+                ></button>
               </div>
             )}
           />
@@ -50,15 +64,19 @@ class App extends Component {
             <Route exact path="/Dashboard" component={Dashboard} />
           ) : null}
 
-          <Route exact path="/new" component={AskNew} />
+          <Route exact path="/add" component={AskNew} />
           <Route exact path="/Leaderboard" component={LeadrBoaed} />
-          <Route path="/question/:id" component={Question} />
+          <Route path="/questions/:id" component={Question} />
           <Route
             path="*"
             render={() => (
-              <Segment placeholder textAlign="center">
-                <Header size="large">PAGE NOT FOUND</Header>
-              </Segment>
+              <div>
+                <Nav />
+                <Segment placeholder textAlign="center">
+                  <Header size="large">404</Header>
+                  <Header size="large">PAGE NOT FOUND</Header>
+                </Segment>
+              </div>
             )}
           ></Route>
         </Switch>
@@ -73,4 +91,4 @@ function mapStateToProps({ users, authedUser }) {
   };
 }
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps)(withRouter(App));

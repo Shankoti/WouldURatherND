@@ -11,11 +11,12 @@ import {
 } from "semantic-ui-react";
 import { Tab } from "semantic-ui-react";
 import { Redirect } from "react-router";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 
 class Dashboard extends Component {
   state = {};
   render() {
+    console.log(this.props);
     if (this.props.athusr.id) {
       const answerd = Object.keys(this.props.urs[this.props.athusr.id].answers);
       answerd.map((a) => console.log("answers", a));
@@ -25,7 +26,7 @@ class Dashboard extends Component {
           menuItem: "Unanswered",
           render: () => (
             <List>
-              {this.props.qus.map((q) =>
+              {this.props.qus.reverse().map((q) =>
                 answerd.includes(q.id) ? null : (
                   <Container textAlign={"center"} key={q.id}>
                     <div style={{ padding: 10, float: "left" }}>
@@ -47,7 +48,7 @@ class Dashboard extends Component {
                         >{`Would you rather....`}</p>
                         <Header>{q.optionOne.text}</Header>
                         <Header>{q.optionTwo.text}</Header>
-                        <Link to={`/question/${q.id}`}>
+                        <Link to={`/questions/${q.id}`}>
                           <Button primary>Answer question</Button>
                         </Link>
                       </Card>
@@ -62,7 +63,7 @@ class Dashboard extends Component {
           menuItem: "Answered",
           render: () => (
             <List>
-              {this.props.qus.map((q) =>
+              {this.props.qus.reverse().map((q) =>
                 answerd.includes(q.id) ? (
                   <Container textAlign={"center"} key={q.id}>
                     <div style={{ padding: 10, float: "left" }}>
@@ -97,7 +98,7 @@ class Dashboard extends Component {
                             <Header color="green">{`${q.optionOne.text}`}</Header>
                           </Header>
                         )}
-                        <Link to={`/question/${q.id}`}>
+                        <Link to={`/questions/${q.id}`}>
                           <Button primary>Statistics </Button>
                         </Link>
                       </Card>
@@ -117,7 +118,11 @@ class Dashboard extends Component {
         </div>
       );
     } else {
-      return <Redirect to="/" />;
+      return (
+        <Redirect
+          to={{ pathname: "/", state: { from: this.props.location } }}
+        />
+      );
     }
   }
 }
@@ -130,4 +135,4 @@ function mapStateToProps({ questions, users, authedUser }) {
   };
 }
 
-export default connect(mapStateToProps)(Dashboard);
+export default connect(mapStateToProps)(withRouter(Dashboard));

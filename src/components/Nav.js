@@ -15,7 +15,7 @@ class Nav extends Component {
             <NavLink to="/Dashboard">Dashboard</NavLink>
           </li>
           <li>
-            <NavLink to="/New">Ask a new question</NavLink>
+            <NavLink to="/add">Ask a new question</NavLink>
           </li>
           <li>
             <NavLink to="/Leaderboard">Leaderboard</NavLink>
