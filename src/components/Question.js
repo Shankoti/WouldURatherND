@@ -22,6 +22,9 @@ class Question extends Component {
       if (this.props.Id !== "undefined") {
         const { Id, QUS, urs } = this.props;
         const theQuestion = QUS[Id];
+        if (!theQuestion) {
+          return <Redirect to="/404" />;
+        }
         const author = urs[QUS[Id].author];
         const answerd = Object.keys(
           this.props.urs[this.props.athusr.id].answers
